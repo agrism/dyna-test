@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dyna test</title>
+</head>
+<body>
+
+<p>
+    Problems 1, 2 and 4 may be solved in any mainstream high-level
+    programming language. The third problem must be solved using PHP 5.3 or
+    higher.
+</p>
+<p>
+    Solutions will be tested automatically. Execution time for
+    every single test case will be limited to one second. Some test cases for
+    the first two problems may be *very* large.
+</p>
+
+<p>
+    Readability and style consistency will be factored in when evaluating your
+    solutions. The tests will be run using error_reporting(E_ALL | E_STRICT) or
+    similar strictness settings if your language of choice is not PHP5 (e.g.,
+    g++ -std=c++0x -pedantic -Wall -Wextra if you submit your solutions in
+    C++).
+</p>
+
+
+<h3>Problem 1</h3>
+<p>
+    Implement a function mkProductList($array) that accepts an array of arbitrary
+    numbers and returns an array of numbers of the same length, such that the
+    first element of the resulting array is the product of all elements of the
+    original array except the first one, the second element is the product of
+    all the elements of the original array except the second one, etc. For
+    example, if the argument passed to this function is array(1, 2, 3), the
+    result should be an array consisting of three elements: 2 * 3, 1 * 3 and
+    1 * 2, that is - array(6, 3, 2). More examples:
+</p>
+
+<p>
+    $array | | result
+    ---------------------+----+----------------------
+    array(1, 2, 3, 4) | -> | array(24, 12, 8, 6)
+    array() | -> | array()
+    array(-0.5, 100, 20) | -> | array(2000, -10, -50)
+</p>
+
+<p>
+    Your implementation must work correctly for all arrays containing nothing
+    but numbers (whether integer or floating point). You do not need to handle
+    the situations where the argument passed to the function is not an array,
+    or is an array containing elements other than numbers.
+</p>
+
+<p>
+    Note that this can be done in linear time for bonus points (but only as
+    long as the implementation *does* work for all possible inputs).
+</p>
+
+<h3>
+    Problem 2
+</h3>
+
+<p>
+    Implement a function maxSumSubseq($array) that accepts an array
+    of integers and returns the highest possible sum of any number of
+    subsequent elements in this array, e.g.:
+</p>
+
+<p>
+    $array | | result
+    -------------------------------+----+-----------------------------------------
+    array(1, 2, 3, 4, 5) | -> | 15 (sequence: 1, 2, 3, 4, 5)
+    array(-1, -2, -3, -4, -5) | -> | 0 (empty sequence)
+    array(1, -2, 3, -4) | -> | 3 (sequence: 3)
+    array(2, -2, 4, -2, 6, -2) | -> | 8 (sequence 4, -2, 6 or 2, -2, 4, -2, 6)
+    array(5, -1, -2, 10, -8, 3, 4) | -> | 12 (sequence: 5, -1, -2, 10)
+</p>
+
+
+<p>
+    The function must work correctly for any array containing nothing but
+    integers. You do not need to handle the situations where the argument
+    passed to the function is not an array, or is an array containing elements
+    other than integer numbers.
+</p>
+
+<p>
+    Note that this can be done in linear time for bonus points.
+</p>
+<h3>
+    Problem 3
+</h3>
+
+<p>
+    NOTE: This problem must be solved in PHP 5.3 or higher.
+</p>
+
+<p>
+    Implement a function genAggrColumns($filename) that accepts a string
+    containing a filename as its only argument, parses the corresponding file
+    as CSV (http://en.wikipedia.org/wiki/Comma-separated_values), and returns
+    the associative array containing all the values in corresponding columns,
+    i.e., for input file containing the following:
+</p>
+
+<p>
+    "a","b","c"
+    1,2,3
+    4,5,6
+</p>
+
+<p>
+    ...the return value should be:
+
+    array(
+    'a' => array(1, 4),
+    'b' => array(2, 5),
+    'c' => array(3, 6),
+    )
+</p>
+
+<p>
+    Use the functions from PHP standard library to achieve this.
+</p>
+
+<p>
+    Any failures (such as input-output errors) should result in function
+    throwing an exception.
+</p>
+
+<h3>
+    Problem 4
+</h3>
+
+<p>
+    Implement a function producePatStr($str) performing the transformation
+    described below on the string supplied as an argument.
+</p>
+
+<p>
+    Characters '{', '}', '|', '\' will have a special meaning for the purposes
+    of this string transformation. Characters enclosed in { and } should be
+    treated as a set of |-delimited options, one of which should be chosen at
+    random and used to replace the enclosure in the resulting string.
+    Enclosures may be nested. '\' should be interpreted as a literal escaping
+    character, so that braces and pipes preceded by it will not be parsed as
+    part of the source string syntax.
+</p>
+
+<p>
+    Example 1: 'ab{c|d|e}'
+</p>
+<p>
+    Possible results:
+    'abc'
+    'abd'
+    'abe'
+</p>
+
+
+<p>
+    Example 2: 'a{b{c|d}|e{f|g}}h'
+</p>
+
+<p>
+    Possible results:
+    'abch'
+    'abdh'
+    'aefh'
+    'aegh'
+</p>
+
+<p>
+    Example 3: 'a{b|c}d{e|f}h'
+</p>
+
+<p>
+    Possible results:
+    'abdeh'
+    'abdfh'
+    'acdeh'
+    'acdfh'
+</p>
+
+
+<p>
+    Example 4: '{\{|\||\}}'
+</p>
+
+<p>
+    Possible results
+    '{'
+    '|'
+    '}'
+</p>
+
+<p>
+    Note that solving this problem using regular expressions is not the right
+    approach, as the grammar of the input string is not regular. This problem
+    is supposed to be quite challenging, unless you've studied automata theory
+    or syntactic analysis.
+</p>
+
+</body>
+</html>
